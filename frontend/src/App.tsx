@@ -1,12 +1,17 @@
+// App.tsx
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import AppRoutes from './routes/AppRoutes';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import UploadPage from './pages/UploadPage';
+import ResultPage from './pages/ResultPage';
 
 function App() {
   return (
-    <BrowserRouter>
-      <AppRoutes />
-    </BrowserRouter>
+    <Router>
+      <Routes>
+        <Route path="/" element={<UploadPage />} />
+        <Route path="/result" element={<ResultPage />} />
+      </Routes>
+    </Router>
   );
 }
 

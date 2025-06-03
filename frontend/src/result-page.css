@@ -32,7 +32,7 @@
   }
   
   .cluster-result-box > * {
-    background-color: #0F0F0F;
+    /* background-color: #0F0F0F; */
     padding: 1.5rem;
     border-radius: 1.5rem;
     color: white;

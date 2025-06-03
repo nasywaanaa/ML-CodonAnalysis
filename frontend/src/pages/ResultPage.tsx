@@ -43,10 +43,10 @@ const ResultPage: React.FC = () => {
 
         {/* Right: Cluster Result Box */}
         <div className="cluster-result-box">
-            <p className="cluster-title">Cluster ID Assigned</p>
+            <p className="cluster-title">How Many Clusters?</p>
             <p className="cluster-number-large">3 Cluster</p>
             <p className="cluster-desc">
-            This cluster groups species with similar codon usage patterns based on the selected clustering algorithm.
+            ini adalah total cluster yang dihasilkan dari dataset tersebut. (CHECKCHECK) This cluster groups species with similar codon usage patterns based on the selected clustering algorithm.
             </p>
         </div>
         </div>
