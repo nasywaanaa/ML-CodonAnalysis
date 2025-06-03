@@ -1,72 +1,258 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
+/* Upload Page Styles */
+.upload-container {
   min-height: 100vh;
+  background-color: #0F0F0F;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
 }
 
-h1 {
-  font-size: 3.2em;
+.upload-content {
+  max-width: 1200px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+}
+
+.upload-left {
+  flex: 1;
+  padding-right: 3rem;
+}
+
+.upload-logo-container {
+  margin-bottom: 0.5rem;
+}
+
+.upload-logo {
+  height: 120px;
+  width: auto;
+  object-fit: contain;
+}
+
+.upload-title {
+  font-size: 3rem;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 0.5rem;
   line-height: 1.1;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.upload-title-highlight {
+  color: #23D693;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+.upload-divider {
+  width: 6rem;
+  height: 4px;
+  background-color: white;
+  margin-bottom: 1.5rem;
+}
+
+.upload-subtitle {
+  color: #23D693;
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.upload-description {
+  color: #d1d5db;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  max-width: 32rem;
+}
+
+.upload-right {
+  flex: 1;
+  max-width: 28rem;
+}
+
+.upload-card {
+  background: linear-gradient(135deg, #23D693, #1ec482);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.upload-card-title {
+  color: white;
+  font-size: 1.875rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.upload-area {
+  background-color: white;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border: 2px dashed #d1d5db;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  text-align: center;
+}
+
+.upload-area:hover {
+  border-color: #23D693;
+  background-color: #f9fafb;
+}
+
+.upload-area.drag-over {
+  border-color: #1ec482;
+  background-color: #ecfdf5;
+}
+
+.upload-area input {
+  display: none;
+}
+
+.upload-icon-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.upload-icon {
+  width: 3rem;
+  height: 3rem;
+  color: #9ca3af;
+}
+
+.upload-icon.file-selected {
+  color: #23D693;
+}
+
+.upload-file-info {
+  text-align: center;
+}
+
+.upload-file-name {
+  color: #1ec482;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.upload-file-size {
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+.upload-placeholder {
+  text-align: center;
+}
+
+.upload-placeholder-title {
+  color: #374151;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.upload-placeholder-text {
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+.upload-button {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 1rem;
+  font-weight: 600;
+  font-size: 1.125rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.upload-button:enabled {
+  background-color: #23D693;
+  color: white;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.upload-button:enabled:hover {
+  background-color: #1ec482;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+}
+
+.upload-button:disabled {
+  background-color: #d1d5db;
+  color: #6b7280;
+  cursor: not-allowed;
+}
+
+.upload-spinner {
+  animation: spin 1s linear infinite;
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 2px solid transparent;
+  border-top: 2px solid white;
+  border-radius: 50%;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
   }
-  a:hover {
-    color: #747bff;
+  to {
+    transform: rotate(360deg);
   }
-  button {
-    background-color: #f9f9f9;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .upload-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .upload-left {
+    padding-right: 0;
+    margin-bottom: 2rem;
+  }
+  
+  .upload-title {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .upload-container {
+    padding: 0.5rem;
+  }
+  
+  .upload-title {
+    font-size: 2rem;
+  }
+  
+  .upload-card {
+    padding: 1.5rem;
+  }
+  
+  .upload-card-title {
+    font-size: 1.5rem;
   }
 }

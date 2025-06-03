@@ -1,0 +1,180 @@
+/* Result Page Styles */
+.result-container {
+    min-height: 100vh;
+    background-color: #0F0F0F;
+    padding: 2rem;
+    color: white;
+  }
+  
+  .result-content {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  
+  /* Header Section */
+  .result-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 3rem;
+    gap: 4rem;
+  }
+  
+  .result-logo-section {
+    flex: 1;
+    max-width: 500px;
+  }
+  
+  .result-logo-container {
+    margin-bottom: 1rem;
+  }
+  
+  .result-logo {
+    height: 48px; /* dikurangi dari 80px agar tidak terlalu besar */
+    width: auto;
+    object-fit: contain;
+  }
+  
+  .result-divider {
+    width: 4rem;
+    height: 3px;
+    background-color: white;
+    margin-bottom: 1rem;
+  }
+  
+  .result-subtitle {
+    color: #23D693;
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+  }
+  
+  .result-description {
+    color: #d1d5db;
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+  
+  /* Cluster Info */
+  .cluster-info {
+    flex: 1;
+    text-align: right;
+    max-width: 400px;
+  }
+  
+  .cluster-header {
+    border-bottom: 3px solid #23D693;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .cluster-header h2 {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  .cluster-number {
+    font-size: 3rem;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 1rem;
+    line-height: 1;
+  }
+  
+  .cluster-description {
+    color: #d1d5db;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    font-style: italic;
+  }
+  
+  /* Visualizations */
+  .visualizations {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 4rem;
+  }
+  
+  .visualization-card {
+    background-color: rgba(255, 255, 255, 0.03);
+    border-radius: 1rem;
+    padding: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .viz-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 1rem;
+  }
+  
+  .viz-highlight {
+    color: #23D693;
+    font-style: italic;
+  }
+  
+  .viz-description {
+    color: #d1d5db;
+    font-size: 16px;
+    font-family: 'Inter', sans-serif;
+    margin-bottom: 1.5rem;
+  }
+  
+  .chart-container {
+    width: 100%;
+    overflow-x: auto;
+    border-radius: 12px;
+    background-color: #fff;
+  }
+  
+  .chart-image {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+  }
+  
+  /* Download Section */
+  .download-section {
+    text-align: center;
+    margin-top: 2rem;
+  }
+  
+  .download-title {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+  
+  .download-highlight {
+    color: #23D693;
+    font-style: italic;
+  }
+  
+  .download-description {
+    color: #d1d5db;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+  
+  .download-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background-color: #23D693;
+    color: #000;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border: none;
+  }
+  
+  .download-button:hover {
+    background-color: #1eb281;
+  }
+  
