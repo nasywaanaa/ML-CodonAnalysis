@@ -10,6 +10,7 @@ import logging
 from fastapi.middleware.cors import CORSMiddleware
 
 
+
 # Set up logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -18,7 +19,7 @@ app = FastAPI(title="Codon Usage Analysis API", version="1.0.0")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],  # khusus React Vite
+    allow_origins=["https://ml-codon-analysis.vercel.app"], 
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
