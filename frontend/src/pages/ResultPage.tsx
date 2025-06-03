@@ -119,9 +119,9 @@ const ResultPage: React.FC = () => {
         {/* Visualizations */}
         <div className="visualizations">
           <div className="visualization-card">
-            <h3 className="viz-title">PCA Scatter Plot <span className="viz-highlight">Visualization</span></h3>
+            <h3 className="viz-title">t-SNE <span className="viz-highlight">Visualization</span></h3>
             <p className="viz-description">
-              The PCA scatter plot displays the species' codon usage profiles...
+            A non-linear dimensionality reduction method that reveals local data structure for cluster visualization...
             </p>
             <div className="chart-container">
               <img src={pcaScatter} alt="PCA Scatter Plot" className="chart-image" />
@@ -129,9 +129,9 @@ const ResultPage: React.FC = () => {
           </div>
 
           <div className="visualization-card">
-            <h3 className="viz-title">Clusters Using the Elbow <span className="viz-highlight">Method</span></h3>
+            <h3 className="viz-title">UMAP <span className="viz-highlight">Visualizaton</span></h3>
             <p className="viz-description">
-              This plot visualizes the distortion scores...
+            A fast dimensionality reduction technique that preserves local and global structure for cluster visualization...
             </p>
             <div className="chart-container">
               <img src={distortionGraph} alt="Elbow Method Chart" className="chart-image" />

@@ -18,7 +18,7 @@ const FeatureDetailsPage: React.FC = () => {
   const [filtered, setFiltered] = useState<FeatureRow[]>([]);
   const [notFound, setNotFound] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5;
+  const itemsPerPage = 4;
   const navigate = useNavigate();
 
   useEffect(() => {
