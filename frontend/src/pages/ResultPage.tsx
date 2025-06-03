@@ -59,21 +59,21 @@ const ResultPage: React.FC = () => {
     }
   }, []);
 
-  const handleDownload = () => {
-    const csvContent = "Species,Cluster,Codon_Frequency\nSpecies1,1,0.25\nSpecies2,2,0.33\nSpecies3,1,0.28";
-    const blob = new Blob([csvContent], { type: 'text/csv' });
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'codon_analysis_results.csv';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    window.URL.revokeObjectURL(url);
-  };
+  // const handleDownload = () => {
+  //   const csvContent = "Species,Cluster,Codon_Frequency\nSpecies1,1,0.25\nSpecies2,2,0.33\nSpecies3,1,0.28";
+  //   const blob = new Blob([csvContent], { type: 'text/csv' });
+  //   const url = window.URL.createObjectURL(blob);
+  //   const a = document.createElement('a');
+  //   a.href = url;
+  //   a.download = 'codon_analysis_results.csv';
+  //   document.body.appendChild(a);
+  //   a.click();
+  //   document.body.removeChild(a);
+  //   window.URL.revokeObjectURL(url);
+  // };
 
   // Get total number of unique kingdoms
-  const clusterCount = kingdomDistribution ? Object.keys(kingdomDistribution).length : null;
+  // const clusterCount = kingdomDistribution ? Object.keys(kingdomDistribution).length : null;
 
   return (
     <div className="result-container">
