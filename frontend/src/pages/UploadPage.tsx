@@ -58,12 +58,41 @@ const UploadPage: React.FC = () => {
     }
   
     setIsUploading(true);
-    setTimeout(() => {
-      setIsUploading(false);
-      navigate('/result');
-    }, 2000);
-  };  
+  
+    try {
+      const formData = new FormData();
+      formData.append('file', selectedFile);
+  
+      const response = await fetch('http://127.0.0.1:8000/analyze', {
+        method: 'POST',
+        body: formData,
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to analyze the file');
+      }
+  
+      const result = await response.json();
+  
 
+      sessionStorage.setItem('analysisResult', JSON.stringify({
+        kingdom_distribution: result.kingdom_distribution,
+        classification_summary: result.classification_summary, 
+      }));
+  
+      navigate('/result');
+      } catch (error) {
+        if (error instanceof Error) {
+          alert('Analysis failed: ' + error.message);
+        } else {
+          alert('Analysis failed: Unknown error');
+        }
+      }
+    
+  };
+  
+  
+  
 
 
   return (

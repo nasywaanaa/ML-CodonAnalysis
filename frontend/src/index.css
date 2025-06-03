@@ -263,3 +263,26 @@ body {
     font-size: 1.5rem;
   }
 }
+
+.feature-button {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #23D693;
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.feature-button:hover {
+  background-color: #23D693;
+}
+
+.cluster-detail-list {
+  margin-top: 10px;
+  color: #ddd;
+  font-size: 0.95rem;
+}
+

@@ -1,238 +1,184 @@
-/* Result Page Styles */
-.result-header-flex {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 4rem;
-    margin-bottom: 3rem;
-    flex-wrap: wrap;
-  }
-  
-  .result-left-header {
-    flex: 1;
-    min-width: 300px;
-    max-width: 700px;
-  }
-  
-  .logo-title {
-    max-height: 60px;
-    width: auto;
-    margin-bottom: 0.5rem;
-  }
-  
-  .cluster-result-box {
-    background: linear-gradient(135deg, #23D693, #0F0F0F);
-    padding: 2px;
-    border-radius: 1.5rem;
-    max-width: 340px;
-    width: 100%;
-    flex-shrink: 0;
-    box-shadow: 0 0 20px rgba(35, 214, 147, 0.3);
-    transition: box-shadow 0.3s ease;
-  }
-  
-  .cluster-result-box > * {
-    /* background-color: #0F0F0F; */
-    padding: 1.5rem;
-    border-radius: 1.5rem;
-    color: white;
-    text-align: left;
-  }  
-  
-  .cluster-title {
-    font-size: 1rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-  }
-  
-  .cluster-number-large {
-    font-size: 2.5rem;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-  }
-  
-  .cluster-desc {
-    font-style: italic;
-    font-size: 0.9rem;
-    color: #cfcfcf;
-  }
-  
-.result-container {
-    min-height: 100vh;
-    background-color: #0F0F0F;
-    padding: 2rem;
-    color: white;
-  }
-  
-  .result-content {
-    max-width: 1400px;
-    margin: 0 auto;
-  }
-  
-  /* Header Section */
-  .result-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 3rem;
-    gap: 4rem;
-  }
-  
-  .result-logo-section {
-    flex: 1;
-    max-width: 500px;
-  }
-  
-  .result-logo-container {
-    margin-bottom: 1rem;
-  }
-  
-  .result-logo {
-    height: 48px; /* dikurangi dari 80px agar tidak terlalu besar */
-    width: auto;
-    object-fit: contain;
-  }
-  
-  .result-divider {
-    width: 4rem;
-    height: 3px;
-    background-color: white;
-    margin-bottom: 1rem;
-  }
-  
-  .result-subtitle {
-    color: #23D693;
-    font-size: 1.1rem;
-    font-weight: 500;
-    margin-bottom: 1.5rem;
-  }
-  
-  .result-description {
-    color: #d1d5db;
-    font-size: 0.9rem;
-    line-height: 1.6;
-  }
-  
-  /* Cluster Info */
-  .cluster-info {
-    flex: 1;
-    text-align: right;
-    max-width: 400px;
-  }
-  
-  .cluster-header {
-    border-bottom: 3px solid #23D693;
-    padding-bottom: 0.5rem;
-    margin-bottom: 1rem;
-  }
-  
-  .cluster-header h2 {
-    color: white;
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin: 0;
-  }
-  
-  .cluster-number {
-    font-size: 3rem;
-    font-weight: bold;
-    color: white;
-    margin-bottom: 1rem;
-    line-height: 1;
-  }
-  
-  .cluster-description {
-    color: #d1d5db;
-    font-size: 0.9rem;
-    line-height: 1.5;
-    font-style: italic;
-  }
-  
-  /* Visualizations */
-  .visualizations {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    margin-bottom: 4rem;
-  }
-  
-  .visualization-card {
-    background-color: rgba(255, 255, 255, 0.03);
-    border-radius: 1rem;
-    padding: 2rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-  }
-  
-  .viz-title {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: white;
-    margin-bottom: 1rem;
-  }
-  
-  .viz-highlight {
-    color: #23D693;
-    font-style: italic;
-  }
-  
-  .viz-description {
-    color: #d1d5db;
-    font-size: 16px;
-    font-family: 'Inter', sans-serif;
-    margin-bottom: 1.5rem;
-  }
-  
-  .chart-container {
-    width: 100%;
-    overflow-x: auto;
-    border-radius: 12px;
-    background-color: #fff;
-  }
-  
-  .chart-image {
-    width: 100%;
-    height: auto;
-    border-radius: 12px;
-  }
-  
-  /* Download Section */
-  .download-section {
-    text-align: center;
-    margin-top: 2rem;
-  }
-  
-  .download-title {
-    font-size: 1.4rem;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-  }
-  
-  .download-highlight {
-    color: #23D693;
-    font-style: italic;
-  }
-  
-  .download-description {
-    color: #d1d5db;
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
-  }
-  
-  .download-button {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1.5rem;
-    background-color: #23D693;
-    color: #000;
-    font-weight: 600;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    border: none;
-  }
-  
-  .download-button:hover {
-    background-color: #1eb281;
-  }
-  
+.feature-page-container {
+  background-color: #0F0F0F;
+  min-height: 100vh;
+  padding: 40px;
+  color: #00ffcc;
+  font-family: sans-serif;
+}
+
+.feature-page-title {
+  text-align: center;
+  font-size: 48px;
+  margin-bottom: 30px;
+  color: #00ffcc;
+}
+
+.feature-search-section {
+  width: 60%;
+  margin: 0 auto;
+}
+
+.feature-search-bar {
+  display: flex;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.feature-search-bar input {
+  width: 100%;
+  padding: 12px 16px;
+  background-color: transparent;
+  border: 1px solid #00ffcc;
+  border-right: none;
+  border-radius: 8px 0 0 8px;
+  color: #00ffcc;
+}
+
+.feature-search-bar input::placeholder {
+  color: #00ffcc;
+  opacity: 0.6;
+  font-weight: 500;
+}
+
+.feature-search-bar button {
+  background-color: #00ffcc;
+  border: 1px solid #00ffcc;
+  border-radius: 0 8px 8px 0;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.search-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.feature-result-box {
+  border: 1px solid #00ffcc;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: #121212;
+  color: #00ffcc;
+}
+
+.feature-result-box div {
+  margin-bottom: 18px;
+  border-bottom: 1px solid #00ffcc33;
+  padding-bottom: 4px;
+}
+
+.feature-result-box label {
+  display: block;
+  font-weight: bold;
+  font-size: 18px;
+  color: #00ffcc;
+}
+
+.feature-result-box p {
+  margin: 4px 0 0;
+  font-size: 16px;
+  color: #00ffcc;
+}
+
+.feature-table {
+  width: 100%;
+  border-collapse: collapse;
+  color: #00ffcc;
+  background-color: #0F0F0F;
+  border: 1px solid #00ffcc;
+  margin-top: 20px;
+}
+
+.feature-table th,
+.feature-table td {
+  padding: 12px;
+  border: 1px solid #00ffcc33;
+  text-align: left;
+}
+
+.feature-table th {
+  background-color: #121212;
+  color: #00ffcc;
+  font-weight: bold;
+}
+
+.feature-page-container {
+  background-color: #0F0F0F;
+  min-height: 100vh;
+  padding: 40px;
+  color: #00ffcc;
+  font-family: 'Inter', sans-serif;
+}
+
+.feature-page-title {
+  text-align: center;
+  font-size: 48px;
+  color: #00ffcc;
+  margin-bottom: 40px;
+}
+
+.feature-search-section {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.feature-search-bar {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.feature-search-bar input {
+  flex: 1;
+  padding: 12px 16px;
+  border: 1px solid #00ffcc;
+  border-right: none;
+  border-radius: 8px 0 0 8px;
+  background-color: #1A1A1A;
+  color: #00ffcc;
+}
+
+.feature-search-bar input::placeholder {
+  color: #66ffe0;
+}
+
+.feature-search-bar button {
+  background-color: #00ffcc;
+  border: 1px solid #00ffcc;
+  border-radius: 0 8px 8px 0;
+  padding: 0 16px;
+  cursor: pointer;
+}
+
+.search-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.feature-result-box {
+  margin-top: 30px;
+}
+
+.feature-table {
+  width: 100%;
+  border-collapse: collapse;
+  color: #00ffcc;
+  background-color: #0F0F0F;
+  border: 1px solid #00ffcc;
+}
+
+.feature-table th,
+.feature-table td {
+  padding: 12px;
+  border: 1px solid #00ffcc33;
+  text-align: left;
+}
+
+.feature-table th {
+  background-color: #121212;
+  color: #00ffcc;
+  font-weight: bold;
+}
+

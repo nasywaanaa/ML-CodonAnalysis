@@ -1,12 +1,16 @@
 import { Routes, Route } from 'react-router-dom';
 import HomePage from '../pages/HomePage.tsx';
-import LoginPage from '../features/auth/pages/LoginPage.tsx';
+import UploadPage from '../pages/UploadPage.tsx';
+import ResultPages from '../pages/ResultPage.tsx';
+import FeatureDetailsPage from '../pages/FeatureDetailsPage.tsx';
 
 export default function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
-      <Route path="/login" element={<LoginPage />} />
+      <Route path="/upload" element={<UploadPage />} />
+      <Route path="/result" element={<ResultPages />} />
+      <Route path="/feature-details" element={<FeatureDetailsPage />} />
     </Routes>
   );
 }
