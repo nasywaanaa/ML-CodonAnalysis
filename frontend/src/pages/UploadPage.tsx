@@ -101,7 +101,7 @@ const UploadPage: React.FC = () => {
         <div className="upload-left">
           <div>
             <div className="upload-logo-container">
-            <img src={logoKDS} alt="Logo KDS" className="result-logo" />
+            <img src={logoKDS} alt="Logo KDS" className="upload-logo" />
             </div>
             <div className="upload-divider"></div>
             <p className="upload-subtitle">Analysis for Codon</p>

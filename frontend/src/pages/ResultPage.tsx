@@ -5,16 +5,46 @@ import { Download } from 'lucide-react';
 import '../result-page.css';
 
 import logoKDS from '../assets/images/logoKDS.png';
-import pcaScatter from '../assets/images/pcaScatter.png';
-import distortionGraph from '../assets/images/distortionGraph.png';
+import pcaScatter from '../assets/images/graph1.jpg';
+import distortionGraph from '../assets/images/graph2.jpg';
 
 const ResultPage: React.FC = () => {
   const [kingdomDistribution, setKingdomDistribution] = useState<Record<string, number> | null>(null);
   const [showClusterDetails, setShowClusterDetails] = useState(false);
   const navigate = useNavigate();
-  
+
   const toggleDetails = () => {
     setShowClusterDetails((prev) => !prev);
+  };
+  
+  const handleDownloadClusteringResult = () => {
+    fetch("/hasil_clustering_clean.csv")
+      .then((res) => res.blob())
+      .then((blob) => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "hasil_clustering_clean.csv";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+      });
+  };
+  
+  const handleDownloadFeatureDetail = () => {
+    fetch("/kingdom_cluster_feature_insight.csv")
+      .then((res) => res.blob())
+      .then((blob) => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "kingdom_cluster_feature_insight.csv";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+      });
   };
   
   useEffect(() => {
@@ -109,56 +139,22 @@ const ResultPage: React.FC = () => {
           </div>
         </div>
 
-        {/* Table Placeholder */}
-        <div className="result-table-section">
-          <div className="table-search">
-            <input type="text" placeholder="Masukkan Kingdom" className="search-input" />
-            <button className="search-button">🔍</button>
-          </div>
-          <table className="result-table">
-            <thead>
-              <tr>
-                <th>No</th>
-                <th>Kingdom</th>
-                <th>Cluster</th>
-                <th>Feature</th>
-                <th>Feature Description</th>
-                <th>Feature Detail</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {[1, 2, 3, 4].map((_, idx) => (
-                <tr key={idx}>
-                  <td>1</td>
-                  <td>XXXXX</td>
-                  <td>120</td>
-                  <td>pieces</td>
-                  <td>20</td>
-                  <td>300</td>
-                  <td><button className="table-action-button">Pilih</button></td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-
-          <div className="pagination">
-            <button className="page-button disabled">‹ Prev</button>
-            <span className="page-info">Page 1 of 2</span>
-            <button className="page-button">Next ›</button>
-          </div>
-        </div>
-
         {/* Download Section */}
         <div className="download-section">
           <h3 className="download-title">Download <span className="download-highlight">File .csv</span></h3>
           <p className="download-description">
-            You can download the clustering results...
+            You can download the clustering results and feature analysis...
           </p>
-          <button onClick={handleDownload} className="download-button">
-            <Download size={20} />
-            Download Result in CSV Format
-          </button>
+          <div style={{ display: "flex", justifyContent: "center", gap: "1rem", marginTop: "1.5rem" }}>
+            <button onClick={handleDownloadClusteringResult} className="download-button">
+              <Download size={20} />
+              Download Clustering Result
+            </button>
+            <button onClick={handleDownloadFeatureDetail} className="download-button">
+              <Download size={20} />
+              Download Feature Detail
+            </button>
+          </div>
         </div>
       </div>
     </div>
