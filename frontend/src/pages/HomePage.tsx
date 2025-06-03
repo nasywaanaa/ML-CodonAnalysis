@@ -1,123 +1,163 @@
-import React from 'react';
-import { Download } from 'lucide-react';
-import '../result-page.css';
+import React, { useState, useRef } from 'react';
+import { Upload, FileText, BarChart3 } from 'lucide-react';
+import '../index.css';
 
-const ResultPage: React.FC = () => {
-  const handleDownload = () => {
-    // Simulate CSV download
-    const csvContent = "Species,Cluster,Codon_Frequency\nSpecies1,1,0.25\nSpecies2,2,0.33\nSpecies3,1,0.28";
-    const blob = new Blob([csvContent], { type: 'text/csv' });
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'codon_analysis_results.csv';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    window.URL.revokeObjectURL(url);
+import logoKDS from '../assets/images/logoKDS.png';
+
+const UploadPage: React.FC = () => {
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [isDragOver, setIsDragOver] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleFileSelect = (file: File) => {
+    if (file && file.type === 'text/csv') {
+      setSelectedFile(file);
+    } else {
+      alert('Please select a valid CSV file');
+    }
+  };
+
+  const handleFileInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      handleFileSelect(file);
+    }
+  };
+
+  const handleDragOver = (event: React.DragEvent) => {
+    event.preventDefault();
+    setIsDragOver(true);
+  };
+
+  const handleDragLeave = (event: React.DragEvent) => {
+    event.preventDefault();
+    setIsDragOver(false);
+  };
+
+  const handleDrop = (event: React.DragEvent) => {
+    event.preventDefault();
+    setIsDragOver(false);
+    const file = event.dataTransfer.files[0];
+    if (file) {
+      handleFileSelect(file);
+    }
+  };
+
+  const handleUploadClick = () => {
+    fileInputRef.current?.click();
+  };
+
+  const handleStartAnalysis = async () => {
+    if (!selectedFile) {
+      alert('Please select a CSV file first');
+      return;
+    }
+
+    setIsUploading(true);
+    setTimeout(() => {
+      setIsUploading(false);
+      alert('Analysis started! Results will be displayed shortly.');
+    }, 2000);
   };
 
   return (
-    <div className="result-container">
-      <div className="result-content">
-        {/* Header with Logo */}
-        <div className="result-header">
-          <div className="result-logo-section">
-            <div className="result-logo-container">
-              <img 
-                src="/assets/images/logoKDS.png" 
-                alt="Logo KDS" 
-                className="result-logo"
-              />
+    <div className="upload-container">
+      <div className="upload-content">
+        <div className="upload-left">
+          <div>
+            <div className="upload-logo-container">
+            <img src={logoKDS} alt="Logo KDS" className="upload-logo" />
             </div>
-            <div className="result-divider"></div>
-            <p className="result-subtitle">Piano Tracker for ABRSM</p>
-            
-            <div className="result-description">
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam 
-                imperdiet tincidunt pellentesque. Curabitur elementum interdum 
-                mollis. Maecenas convallis dui id rutrum laoreet. Donec tempor 
-                mattis nulla, in faucibus massa congue at. Curabitur quis lorem 
-                euismod, bibendum leo nec, tempus nunc. Pellentesque habitant 
-                morbi tristique senectus et netus et malesuada fames ac turpis 
-                egestas. Morbi cursus lacus tristique tempor posuere.
-              </p>
-            </div>
+            <div className="upload-divider"></div>
+            <p className="upload-subtitle">Analysis for Codon</p>
           </div>
-
-          {/* Cluster Info */}
-          <div className="cluster-info">
-            <div className="cluster-header">
-              <h2>Cluster ID Assigned</h2>
-            </div>
-            <div className="cluster-number">3 Cluster</div>
-            <p className="cluster-description">
-              This cluster groups species with similar codon usage patterns 
-              based on the selected clustering algorithm.
-            </p>
-          </div>
-        </div>
-
-        {/* Visualizations */}
-        <div className="visualizations">
-          {/* PCA Scatter Plot */}
-          <div className="visualization-card">
-            <h3 className="viz-title">
-              PCA Scatter Plot <span className="viz-highlight">Visualization</span>
-            </h3>
-            <p className="viz-description">
-              The PCA scatter plot displays the species' codon usage profiles reduced to 
-              two dimensions, highlighting the clustering structure and the position of the 
-              input species among other data points.
-            </p>
-            <div className="chart-container">
-              <img 
-                src="../assets/images/pcaScatter.png" 
-                alt="PCA Scatter Plot" 
-                className="chart-image"
-              />
-            </div>
-          </div>
-
-          {/* Elbow Method */}
-          <div className="visualization-card">
-            <h3 className="viz-title">
-              Clusters Using the Elbow <span className="viz-highlight">Method</span>
-            </h3>
-            <p className="viz-description">
-              This plot visualizes the distortion scores for different numbers of clusters, 
-              where the "elbow" point at k = 4 suggests the optimal cluster count for 
-              minimizing within-cluster variance while avoiding overfitting.
-            </p>
-            <div className="chart-container">
-              <img 
-                src="../assets/images/distortionGraph.png" 
-                alt="Elbow Method Chart" 
-                className="chart-image"
-              />
-            </div>
-          </div>
-        </div>
-
-        {/* Download Section */}
-        <div className="download-section">
-          <h3 className="download-title">
-            Download <span className="download-highlight">File .csv</span>
-          </h3>
-          <p className="download-description">
-            You can download the clustering results, including species name, assigned cluster, 
-            and codon frequencies, by <strong>clicking the button below</strong>.
-          </p>
           
-          <button onClick={handleDownload} className="download-button">
-            <Download size={20} />
-            Download Result in CSV Format
-          </button>
+          <div className="upload-description">
+            <p>
+              Codon Chronicle is a bioinformatics analysis platform that clusters 
+              species based on codon usage patterns using a clustering 
+              algorithm. The results are visualized through a PCA scatter plot to 
+              illustrate cluster structures and the position of the input species, 
+              along with an Elbow Method graph to determine the optimal 
+              number of clusters.
+            </p>
+          </div>
+        </div>
+
+        <div className="upload-right">
+          <div className="upload-card">
+            <div className="upload-card-inner">
+                <h2 className="upload-card-title">
+                Upload Your CSV
+                </h2>
+                
+                <div
+                className={`upload-area ${isDragOver ? 'drag-over' : ''}`}
+                onDragOver={handleDragOver}
+                onDragLeave={handleDragLeave}
+                onDrop={handleDrop}
+                onClick={handleUploadClick}
+                >
+                <input
+                    ref={fileInputRef}
+                    type="file"
+                    accept=".csv"
+                    onChange={handleFileInputChange}
+                />
+                
+                <div className="upload-icon-container">
+                    {selectedFile ? (
+                    <FileText className="upload-icon file-selected" />
+                    ) : (
+                    <Upload className="upload-icon" />
+                    )}
+                </div>
+                
+                {selectedFile ? (
+                    <div className="upload-file-info">
+                    <p className="upload-file-name">
+                        {selectedFile.name}
+                    </p>
+                    <p className="upload-file-size">
+                        {(selectedFile.size / 1024).toFixed(1)} KB
+                    </p>
+                    </div>
+                ) : (
+                    <div className="upload-placeholder">
+                    <p className="upload-placeholder-title">
+                        Upload CSV File
+                    </p>
+                    <p className="upload-placeholder-text">
+                        Click to browse or drag and drop your CSV file here
+                    </p>
+                    </div>
+                )}
+                </div>
+
+                <button
+                onClick={handleStartAnalysis}
+                disabled={!selectedFile || isUploading}
+                className="upload-button"
+                >
+                {isUploading ? (
+                    <>
+                    <div className="upload-spinner"></div>
+                    Processing...
+                    </>
+                ) : (
+                    <>
+                    <BarChart3 size={20} />
+                    Start Analysis
+                    </>
+                )}
+                </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default ResultPage;
+export default UploadPage;

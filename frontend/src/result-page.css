@@ -1,4 +1,62 @@
 /* Result Page Styles */
+.result-header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 4rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+  }
+  
+  .result-left-header {
+    flex: 1;
+    min-width: 300px;
+    max-width: 700px;
+  }
+  
+  .logo-title {
+    max-height: 60px;
+    width: auto;
+    margin-bottom: 0.5rem;
+  }
+  
+  .cluster-result-box {
+    background: linear-gradient(135deg, #23D693, #0F0F0F);
+    padding: 2px;
+    border-radius: 1.5rem;
+    max-width: 340px;
+    width: 100%;
+    flex-shrink: 0;
+    box-shadow: 0 0 20px rgba(35, 214, 147, 0.3);
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .cluster-result-box > * {
+    background-color: #0F0F0F;
+    padding: 1.5rem;
+    border-radius: 1.5rem;
+    color: white;
+    text-align: left;
+  }  
+  
+  .cluster-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  
+  .cluster-number-large {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+  
+  .cluster-desc {
+    font-style: italic;
+    font-size: 0.9rem;
+    color: #cfcfcf;
+  }
+  
 .result-container {
     min-height: 100vh;
     background-color: #0F0F0F;

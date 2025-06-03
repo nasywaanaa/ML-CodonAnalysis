@@ -2,6 +2,8 @@ import React, { useState, useRef } from 'react';
 import { Upload, FileText, BarChart3 } from 'lucide-react';
 import '../index.css';
 
+import logoKDS from '../assets/images/logoKDS.png';
+
 const UploadPage: React.FC = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [isDragOver, setIsDragOver] = useState(false);
@@ -65,11 +67,7 @@ const UploadPage: React.FC = () => {
         <div className="upload-left">
           <div>
             <div className="upload-logo-container">
-              <img 
-                src="../assets/images/logoKDS.png" 
-                alt="Logo KDS" 
-                className="upload-logo"
-              />
+            <img src={logoKDS} alt="Logo KDS" className="result-logo" />
             </div>
             <div className="upload-divider"></div>
             <p className="upload-subtitle">Analysis for Codon</p>
