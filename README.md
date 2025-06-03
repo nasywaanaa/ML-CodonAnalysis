@@ -145,6 +145,7 @@ REACT_APP_API_URL=http://localhost:8000
 ## Link Laporan
 
 📋 **Link Hasil Laporan:** [Proposal Penelitian](https://docs.google.com/document/d/1pKiH44rwDghlDjN_oEQVv_MOj1ibHL-K/edit?usp=sharing&ouid=112908507478678229014&rtpof=true&sd=true)
+📋 **Link Machine learning:** [Notebook Machine Learning](https://colab.research.google.com/drive/12aDhgK5i7G2zTo4gDzmQgOdQLlFrswHY?usp=sharing#scrollTo=oiOzar8I31Tj)
 
 ## Anggota Tim
 
