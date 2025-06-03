@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import search from "../assets/images/search.png";
 import Papa from "papaparse";
 import "../feature-details.css";
@@ -17,7 +18,8 @@ const FeatureDetailsPage: React.FC = () => {
   const [filtered, setFiltered] = useState<FeatureRow[]>([]);
   const [notFound, setNotFound] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10;
+  const itemsPerPage = 5;
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch("/kingdom_cluster_feature_insight.csv")
@@ -117,6 +119,23 @@ const FeatureDetailsPage: React.FC = () => {
             onClick={() => setCurrentPage((prev) => prev + 1)}
           >
             Next ›
+          </button>
+        </div>
+
+        <div style={{ marginTop: "20px", textAlign: "center" }}>
+          <button
+            onClick={() => navigate("/result")}
+            style={{
+              backgroundColor: "#23D693",
+              color: "#0F0F0F",
+              padding: "10px 20px",
+              borderRadius: "6px",
+              border: "none",
+              cursor: "pointer",
+              fontWeight: "bold"
+            }}
+          >
+            Back to Result Page
           </button>
         </div>
       </div>

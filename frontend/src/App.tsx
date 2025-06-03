@@ -9,7 +9,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/upload" element={<UploadPage />} />
+        <Route path="/" element={<UploadPage />} />
         <Route path="/result" element={<ResultPage />} />
         <Route path="/feature-details" element={<FeatureDetailsPage />} />
       </Routes>

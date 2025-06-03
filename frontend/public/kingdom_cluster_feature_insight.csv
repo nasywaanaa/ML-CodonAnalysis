@@ -1,4 +1,4 @@
-,Kingdom,Cluster,n_species,Feature,Importance,Feature Description,Feature Detail
+,Kingdom,Cluster,n_species,Feature,Importance,FeatureDescription,FeatureDetail
 0,arc,0,126,enc_approx,0.0102326298310179,Effective Number of Codons (ENC),Estimates how evenly synonymous codons are used. Lower ENC values indicate stronger codon bias.
 1,arc,0,126,entropy,0.021657086090576,Codon Usage Entropy (Diversity),"Measures how evenly codons are used across synonymous options. Lower entropy indicates stronger bias, which may be linked to high expression efficiency."
 2,arc,0,126,kingdom_encoded,0.1435208347814772,Kingdom Taxonomy Label,"Encoded label representing the taxonomic kingdom (e.g., Bacteria, Archaea, Eukaryota). Often used as a categorical identifier in classification tasks."
