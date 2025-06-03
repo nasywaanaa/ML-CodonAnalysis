@@ -1,52 +1,57 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import search from "../assets/images/search.png";
+import Papa from "papaparse";
 import "../feature-details.css";
 
+interface FeatureRow {
+  Cluster: string;
+  Kingdom: string;
+  Feature: string;
+  FeatureDescription: string;
+  FeatureDetail: string;
+}
+
 const FeatureDetailsPage: React.FC = () => {
-  const [inputId, setInputId] = useState("");
-  const [data, setData] = useState<any[]>([]);
+  const [input, setInput] = useState("");
+  const [data, setData] = useState<FeatureRow[]>([]);
+  const [filtered, setFiltered] = useState<FeatureRow[]>([]);
   const [notFound, setNotFound] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
 
-  const handleSearch = async () => {
-    setNotFound(false);
-    setData([]);
-
-    if (!inputId) return;
-
-    try {
-      const response = await fetch("http://localhost:4000/graphql", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          query: `
-            query {
-              getFeatureDetails(ID: ${inputId}) {
-                Cluster
-                Kingdom
-                Feature
-                FeatureDescription
-                FeatureDetail
-              }
-            }
-          `,
-        }),
+  useEffect(() => {
+    fetch("/kingdom_cluster_feature_insight.csv")
+      .then((res) => res.text())
+      .then((csvText) => {
+        const parsed = Papa.parse<FeatureRow>(csvText, {
+          header: true,
+          skipEmptyLines: true,
+        });
+        setData(parsed.data);
+        setFiltered(parsed.data);
+        setCurrentPage(1);
       });
+  }, []);
 
-      const json = await response.json();
-      const result = json.data.getFeatureDetails;
-
-      if (Array.isArray(result) && result.length > 0) {
-        setData(result);
-      } else if (result) {
-        setData([result]);
-      } else {
-        setNotFound(true);
-      }
-    } catch (err) {
-      console.error("Search failed:", err);
-      setNotFound(true);
+  const handleSearch = () => {
+    if (!input) {
+      setFiltered(data);
+      setNotFound(false);
+      setCurrentPage(1);
+      return;
     }
+    const results = data.filter((row) =>
+      row.Kingdom.toLowerCase().includes(input.toLowerCase())
+    );
+    setFiltered(results);
+    setNotFound(results.length === 0);
+    setCurrentPage(1);
   };
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = filtered.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(filtered.length / itemsPerPage);
 
   return (
     <div className="feature-page-container">
@@ -55,9 +60,9 @@ const FeatureDetailsPage: React.FC = () => {
         <div className="feature-search-bar">
           <input
             type="text"
-            placeholder="Insert Feature ID"
-            value={inputId}
-            onChange={(e) => setInputId(e.target.value)}
+            placeholder="Masukkan Kingdom"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
           />
           <button onClick={handleSearch}>
             <img src={search} alt="Search" className="search-icon" />
@@ -65,37 +70,55 @@ const FeatureDetailsPage: React.FC = () => {
         </div>
 
         {notFound && (
-          <p style={{ color: "#ff6666", marginTop: "1rem" }}>Data not found.</p>
+          <p style={{ color: "#ff6666", marginTop: "1rem" }}>
+            Kingdom tidak ditemukan.
+          </p>
         )}
 
-        {data.length > 0 && (
-          <div className="feature-result-box">
-            <table className="feature-table">
-              <thead>
-                <tr>
-                  <th>No</th>
-                  <th>Kingdom</th>
-                  <th>Cluster</th>
-                  <th>Feature</th>
-                  <th>Feature Description</th>
-                  <th>Feature Detail</th>
+        <div className="feature-result-table">
+          <table>
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Kingdom</th>
+                <th>Cluster</th>
+                <th>Feature</th>
+                <th>Feature Description</th>
+                <th>Feature Detail</th>
+              </tr>
+            </thead>
+            <tbody>
+              {currentItems.map((row, idx) => (
+                <tr key={indexOfFirstItem + idx}>
+                  <td>{indexOfFirstItem + idx + 1}</td>
+                  <td>{row.Kingdom}</td>
+                  <td>{row.Cluster}</td>
+                  <td>{row.Feature}</td>
+                  <td>{row.FeatureDescription}</td>
+                  <td>{row.FeatureDetail}</td>
                 </tr>
-              </thead>
-              <tbody>
-                {data.map((item, index) => (
-                  <tr key={index}>
-                    <td>{index + 1}</td>
-                    <td>{item.Kingdom}</td>
-                    <td>{item.Cluster}</td>
-                    <td>{item.Feature}</td>
-                    <td>{item.FeatureDescription}</td>
-                    <td>{item.FeatureDetail}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <div className="pagination-controls">
+          <button
+            disabled={currentPage === 1}
+            onClick={() => setCurrentPage((prev) => prev - 1)}
+          >
+            ‹ Prev
+          </button>
+          <span>
+            Page {currentPage} of {totalPages}
+          </span>
+          <button
+            disabled={currentPage === totalPages}
+            onClick={() => setCurrentPage((prev) => prev + 1)}
+          >
+            Next ›
+          </button>
+        </div>
       </div>
     </div>
   );
